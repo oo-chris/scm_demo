@@ -7,8 +7,8 @@ flow:
           installation.install_nodejs: []
         navigate:
           - FAILURE: on_failure
-          - SUCCESS: ssh_command
-    - ssh_command:
+          - SUCCESS: install_docker
+    - install_docker:
         do:
           io.cloudslang.base.ssh.ssh_command:
             - host: '${hostname}'
@@ -26,7 +26,7 @@ extensions:
       install_nodejs:
         x: 209
         y: 154
-      ssh_command:
+      install_docker:
         x: 442
         y: 152
         navigate:
