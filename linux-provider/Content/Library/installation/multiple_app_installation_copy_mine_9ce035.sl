@@ -1,31 +1,19 @@
 namespace: installation
 flow:
-  name: multiple_app_installation
+  name: multiple_app_installation_copy_mine_9ce035
   workflow:
     - install_nodejs:
         do:
           installation.install_nodejs: []
         navigate:
           - FAILURE: on_failure
-          - SUCCESS: ssh_command
-    - ssh_command:
+          - SUCCESS: install_docker
+    - install_docker:
         do:
           io.cloudslang.base.ssh.ssh_command:
             - host: '${hostname}'
             - command: apt-get install docker-engine
             - username: root
-        navigate:
-          - FAILURE: on_failure
-          - SUCCESS: send_mail
-    - send_mail:
-        do:
-          io.cloudslang.base.mail.send_mail:
-            - hostname: smtp3.hpe.com
-            - port: '25'
-            - from: chris@demo.com
-            - to: jane@demo.com
-            - subject: application installed
-            - body: the following application was installed
         navigate:
           - FAILURE: on_failure
           - SUCCESS: SUCCESS
@@ -38,18 +26,15 @@ extensions:
       install_nodejs:
         x: 209
         y: 154
-      ssh_command:
-        x: 409
-        y: 153
-      send_mail:
-        x: 592
-        y: 153
+      install_docker:
+        x: 442
+        y: 152
         navigate:
-          be00ca84-c0bd-5580-5b67-7640e56b44cf:
+          2275fc3a-6ec9-3fd3-fd3d-be5c5ff034bc:
             targetId: 093bb1ab-06ed-1acc-cc44-e843e4b369ee
             port: SUCCESS
     results:
       SUCCESS:
         093bb1ab-06ed-1acc-cc44-e843e4b369ee:
-          x: 751
-          y: 154
+          x: 668
+          y: 156
