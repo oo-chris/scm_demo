@@ -7,8 +7,8 @@ flow:
           installation.install_nodejs: []
         navigate:
           - FAILURE: on_failure
-          - SUCCESS: ssh_command
-    - ssh_command:
+          - SUCCESS: install_docker_engine
+    - install_docker_engine:
         do:
           io.cloudslang.base.ssh.ssh_command:
             - host: '${hostname}'
@@ -38,9 +38,6 @@ extensions:
       install_nodejs:
         x: 209
         y: 154
-      ssh_command:
-        x: 409
-        y: 153
       send_mail:
         x: 592
         y: 153
@@ -48,6 +45,9 @@ extensions:
           be00ca84-c0bd-5580-5b67-7640e56b44cf:
             targetId: 093bb1ab-06ed-1acc-cc44-e843e4b369ee
             port: SUCCESS
+      install_docker_engine:
+        x: 409
+        y: 153
     results:
       SUCCESS:
         093bb1ab-06ed-1acc-cc44-e843e4b369ee:
